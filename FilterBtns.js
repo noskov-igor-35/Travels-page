@@ -9,7 +9,9 @@ class FilterBtns extends Component {
 
   // Метод клика, отсылает id во внешний обработчик
   handleClick(e) {
-    this.props.onClick(e.target.id);
+    if (e.target.id !== this.props.selectedKey) {
+      this.props.onChange(e.target.id);
+    }
   }
 
   render(){

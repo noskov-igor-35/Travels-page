@@ -20,7 +20,9 @@ class SortingDrpdown extends Component {
 
   // Метод клика, отсылает id во внешний обработчик
   clickItem(e) {
-    this.props.onChange(e.target.id);
+    if (e.target.id !== this.props.selectedKey) {
+      this.props.onChange(e.target.id);
+    }
   }
 
   render () {

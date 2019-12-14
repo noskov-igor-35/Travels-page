@@ -109,7 +109,7 @@ class App extends Component {
                                         { id: 'railways', title: 'ЖД билеты' },
                                         { id: 'cars', title: 'Аренда авто' }
                                     ]}
-                                    onClick = { this.handleFilterChange }/>
+                                    onChange = { this.handleFilterChange }/>
                     </div>
                     <div className='pb-5'>
                         <SortingDrpdown size = { size }
@@ -128,7 +128,7 @@ class App extends Component {
                     <PaginationBar size = { size } 
                                 page = { this.state.page } 
                                 maxPage = { this.state.maxPage }
-                                onClick = {this.handlePageChange}/>
+                                onChange = {this.handlePageChange}/>
                 </div>
             </div>
         );

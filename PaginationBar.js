@@ -6,7 +6,7 @@ const DELTA_SHOW_PAGES = 2;
 class PaginationBar extends Component {
   // Метод клика, отсылает id во внешний обработчик
   handleClick(e) {
-    this.props.onClick(Number(e.target.id));
+    this.props.onChange(Number(e.target.id));
   }
 
   // Метод получения кнопки перехода в начало
