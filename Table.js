@@ -44,8 +44,7 @@ function Table(props) {
   }
 
   // Если есть данные выведем таблицу, иначе заглушку
-  const content = props.data.length ? <div>
-    <table className="table table-responsive-sm">
+  const content = props.data.length ? <table className="table table-responsive-sm">
       <thead>
         <tr>
           <th width="auto" scope="col">#</th>
@@ -59,8 +58,7 @@ function Table(props) {
       <tbody>
         { items }
       </tbody>
-    </table>
-  </div> : <div className='d-flex justify-content-center py-5'><b>Нет данных</b></div>
+    </table> : <div className='d-flex justify-content-center py-5'><b>Нет данных</b></div>
   return content;
 }
 

@@ -97,40 +97,38 @@ class App extends Component {
         // Обрежем данные под страницу
         const data = this.state.data.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
         return (
-            <div className="App py-4 px-4">
-                <div>
-                    <div className = 'd-flex justify-content-between pb-5 flex-md-row flex-column'>
-                        <div className = 'pr-md-3 pb-md-5 pb-2'>
-                            <FilterBtns size = { size }
-                                        selectedKey = { filter }
+            <div className="py-4 px-4">
+                <div className = 'd-flex justify-content-between pb-5 flex-md-row flex-column'>
+                    <div className = 'pr-md-3 pb-md-5 pb-2'>
+                        <FilterBtns size = { size }
+                                    selectedKey = { filter }
+                                    items = {[
+                                        { id: 'all', title: 'Все заказы' },
+                                        { id: 'avia', title: 'Авиабилеты' },
+                                        { id: 'hotel', title: 'Отели' },
+                                        { id: 'railways', title: 'ЖД билеты' },
+                                        { id: 'cars', title: 'Аренда авто' }
+                                    ]}
+                                    onClick = { this.handleFilterChange }/>
+                    </div>
+                    <div className='pb-5'>
+                        <SortingDrpdown size = { size }
+                                        selectedKey = { sorting }
                                         items = {[
-                                            { id: 'all', title: 'Все заказы' },
-                                            { id: 'avia', title: 'Авиабилеты' },
-                                            { id: 'hotel', title: 'Отели' },
-                                            { id: 'railways', title: 'ЖД билеты' },
-                                            { id: 'cars', title: 'Аренда авто' }
+                                            { id: 'date', title: 'По дате создания' },
+                                            { id: 'amount', title: 'По стоимости' }
                                         ]}
-                                        onClick = { this.handleFilterChange }/>
-                        </div>
-                        <div className='pb-5'>
-                            <SortingDrpdown size = { size }
-                                            selectedKey = { sorting }
-                                            items = {[
-                                                { id: 'date', title: 'По дате создания' },
-                                                { id: 'amount', title: 'По стоимости' }
-                                            ]}
-                                            onChange = {this.handleSortingChange}/>
-                        </div>
+                                        onChange = {this.handleSortingChange}/>
                     </div>
-                    <div>
-                        <Table data = { data }/>
-                    </div>
-                    <div>
-                        <PaginationBar size = { size } 
-                                    page = { this.state.page } 
-                                    maxPage = { this.state.maxPage }
-                                    onClick = {this.handlePageChange}/>
-                    </div>
+                </div>
+                <div>
+                    <Table data = { data }/>
+                </div>
+                <div>
+                    <PaginationBar size = { size } 
+                                page = { this.state.page } 
+                                maxPage = { this.state.maxPage }
+                                onClick = {this.handlePageChange}/>
                 </div>
             </div>
         );

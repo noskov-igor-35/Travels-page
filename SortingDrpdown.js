@@ -38,7 +38,7 @@ class SortingDrpdown extends Component {
 
     // flex-sm-grow-1 не работает, придется ставить условие в className
     return (
-      <div className="SortingDrpdown d-flex">
+      <div className="d-flex">
         <ButtonDropdown isOpen = { this.state.dropdownOpen } 
                         toggle = { this.toggle }
                         className={this.props.size === 'sm' ? 'flex-grow-1 ' : 'flex-grow-0'}>

@@ -95,7 +95,7 @@ class PaginationBar extends Component {
       </Pagination>
     }
     return (
-      <div className='PaginationBar d-flex justify-content-center'>
+      <div className='d-flex justify-content-center'>
         { pagination }
       </div>
     );

@@ -10,8 +10,8 @@ npm install --save react@^16.8.0 react-dom@^16.8.0
 
 ###  Разверните приложение и зайдите в него
 ```
-npx create-react-app cinema
-cd cinema
+npx create-react-app travels
+cd travels
 ```
 
 ### Установите React Bootstrap 4 (Reactstrap)
