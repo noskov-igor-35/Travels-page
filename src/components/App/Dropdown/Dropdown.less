@@ -1,0 +1,89 @@
+@import '../../../aliases.less';
+
+.Dropdown {
+    position: relative;
+    display: inline-block;
+    &__Btn {
+        background-color: @btnColor;
+        color: @whiteColorText;
+        border-radius: @brnBorderRadius;
+        white-space: nowrap;
+        cursor: pointer;
+        &-fix {
+            height: 0;
+            visibility: hidden;
+        }
+        &:hover {
+            background-color: @btnColorHover;
+        }
+    }
+    &__List {
+        display: none;
+        position: absolute;
+        width: 100%;
+        cursor: pointer;
+        &_open {
+            display: block;
+        }
+        &-item {
+            background-color: @btnColor;
+            color: @whiteColorText;
+            white-space: nowrap;
+            &:last-child {
+                border-bottom-left-radius: @brnBorderRadius;
+                border-bottom-right-radius: @brnBorderRadius;
+            }
+            &:hover {
+                background-color: @btnColorHover;
+            }
+            &_active {
+                background-color: @btnActiveColor;
+                color: @blackColorText;
+                &:hover {
+                    background-color: @btnActiveColorHover;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .Dropdown {
+        &__Btn {
+            border-radius: @brnBorderRadius * 1.25;
+        }
+        &__List {
+            &-item {
+                &:last-child {
+                    border-bottom-left-radius: @brnBorderRadius * 1.25;
+                    border-bottom-right-radius: @brnBorderRadius * 1.25;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1600px) {
+    .Dropdown {
+        &__Btn {
+            border-radius: @brnBorderRadius * 1.5;
+        }
+        &__List {
+            &-item {
+                &:last-child {
+                    border-bottom-left-radius: @brnBorderRadius * 1.25;
+                    border-bottom-right-radius: @brnBorderRadius * 1.25;
+                }
+            }
+        }
+    }
+}
+
+.Dropdown {
+    &__Btn {
+        &_open {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+    }
+}

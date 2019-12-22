@@ -1,0 +1,58 @@
+@import '../../../aliases.less';
+
+.GroupButtons{
+    &__item {
+        background-color: @btnColor;
+        color: @whiteColorText;
+        white-space: nowrap;
+        cursor: pointer;
+        &:first-child {
+            border-top-left-radius: @brnBorderRadius;
+            border-bottom-left-radius: @brnBorderRadius;
+        }
+        &:last-child {
+            border-top-right-radius: @brnBorderRadius;
+            border-bottom-right-radius: @brnBorderRadius;
+        }
+        &:hover {
+            background-color:@btnColorHover;
+        }
+        &_active {
+            background-color: @btnActiveColor;
+            color: @blackColorText;
+            &:hover {
+                background-color: @btnActiveColorHover;
+            }
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .GroupButtons{
+        &__item {
+            &:first-child {
+                border-top-left-radius: @brnBorderRadius * 1.25;
+                border-bottom-left-radius: @brnBorderRadius * 1.25;
+            }
+            &:last-child {
+                border-top-right-radius: @brnBorderRadius * 1.25;
+                border-bottom-right-radius: @brnBorderRadius * 1.25;
+            }
+        }
+    }
+}
+
+@media (min-width: 1600px) {
+    .GroupButtons{
+        &__item {
+            &:first-child {
+                border-top-left-radius: @brnBorderRadius * 1.5;
+                border-bottom-left-radius: @brnBorderRadius * 1.5;
+            }
+            &:last-child {
+                border-top-right-radius: @brnBorderRadius * 1.5;
+                border-bottom-right-radius: @brnBorderRadius * 1.5;
+            }
+        }
+    }
+}

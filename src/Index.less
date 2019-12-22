@@ -1,0 +1,140 @@
+@import './aliases.less';
+
+.spacing_mixin (@props, @modifier: 1) {
+  &--m {
+        @{props}: @spacing-m * @modifier; // 8px;
+  }
+  &--l {
+    @{props}: @spacing-l * @modifier; // 16px;
+  }
+  &--xl {
+        @{props}: @spacing-xl * @modifier; // 32px;
+  }
+  &--xxl {
+        @{props}: @spacing-xxl * @modifier; // 64px;
+  }
+}
+
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.flexbox {
+  display: flex;
+}
+
+.flex-direction--column {
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .flex-direction--column-sm {
+    flex-direction: column;
+  }
+}
+
+.justify-content--{
+  &center {
+    justify-content: center;
+  }
+  &start {
+    justify-content: flex-start;
+  }
+  &end {
+    justify-content: flex-end;
+  }
+  &space-between {
+    justify-content: space-between;
+  }
+}
+
+.padding {
+  .spacing_mixin(padding);
+  &-left {
+     .spacing_mixin(padding-left);
+  }
+  &-right {
+     .spacing_mixin(padding-right);
+  }
+  &-top {
+     .spacing_mixin(padding-top);
+  }
+  &-bottom {
+     .spacing_mixin(padding-bottom);
+  }
+}
+
+/*@media (max-width: 768px) {
+  .padding {
+    .spacing_mixin(padding, 0.75);
+    &-left {
+       .spacing_mixin(padding-left, 0.75);
+    }
+    &-right {
+       .spacing_mixin(padding-right, 0.75);
+    }
+    &-top {
+       .spacing_mixin(padding-top, 0.75);
+    }
+    &-bottom {
+       .spacing_mixin(padding-bottom, 0.75);
+    }
+  }
+}*/
+
+@media (min-width: 1024px) {
+  .padding {
+    .spacing_mixin(padding, 1.25);
+    &-left {
+       .spacing_mixin(padding-left, 1.25);
+    }
+    &-right {
+       .spacing_mixin(padding-right, 1.25);
+    }
+    &-top {
+       .spacing_mixin(padding-top, 1.25);
+    }
+    &-bottom {
+       .spacing_mixin(padding-bottom, 1.25);
+    }
+  }
+}
+
+@media (min-width: 1600px) {
+  .padding {
+    .spacing_mixin(padding, 1.5);
+    &-left {
+       .spacing_mixin(padding-left, 1.5);
+    }
+    &-right {
+       .spacing_mixin(padding-right, 1.5);
+    }
+    &-top {
+       .spacing_mixin(padding-top, 1.5);
+    }
+    &-bottom {
+       .spacing_mixin(padding-bottom, 1.5);
+    }
+  }
+}
+
+
+.default-font-size {
+  font-size: @default-font-size;
+}
+
+@media (min-width: 1024px) {
+  .default-font-size {
+    font-size: @default-font-size * 1.25;
+  }
+}
+
+@media (min-width: 1600px) {
+  .default-font-size {
+    font-size: @default-font-size * 1.5;
+  }
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import './Table/Table.less'
 
 const DOUBLE_DIGIT = 10;
 
@@ -33,32 +34,42 @@ function Table(props) {
 
       // Соберем верстку для строки
       return <tr key = { item.orderNumber }>
-        <th scope="row"> { item.orderNumber } </th>
-        <td> { type } </td>
-        <td> { `${ day }.${ month }.${ item.date.getFullYear() } ${ hour }:${ minutes }` } </td>
+        <th scope='row'>
+          <div className='flexbox'>{ item.orderNumber }</div>
+        </th>
         <td>
-          <div className='d-flex justify-content-end'>{ `${item.amount.toLocaleString('ru-RU')} ₽` }</div>
+          <div className='flexbox justify-content--center'>{ type }</div>
+        </td>
+        <td>
+          <div className='flexbox justify-content--center'>
+            { `${ day }.${ month }.${ item.date.getFullYear() } ${ hour }:${ minutes }` }
+          </div>
+        </td>
+        <td>
+          <div className='flexbox justify-content--end'>{ `${item.amount.toLocaleString('ru-RU')} руб.` }</div>
         </td>
       </tr>
     })
   }
 
   // Если есть данные выведем таблицу, иначе заглушку
-  const content = props.data.length ? <table className="table table-responsive-sm">
+  const content = props.data.length ? <table className='Table'>
       <thead>
         <tr>
-          <th width="auto" scope="col">#</th>
-          <th nowrap="true" width="auto" scope="col">Вид заказа</th>
-          <th width="60%" scope="col">Дата</th>
-          <th width="auto" scope="col">
-            <div className='d-flex justify-content-end'>Стоимость</div>
+          <th width='auto' scope='col'>
+            <div className='flexbox'>#</div>
+          </th>
+          <th nowrap='true' width='auto' scope='col'>Вид заказа</th>
+          <th width='60%' scope='col'>Дата</th>
+          <th width='auto' scope='col'>
+            <div className='flexbox justify-content--end'>Стоимость</div>
           </th>
         </tr>
       </thead>
       <tbody>
         { items }
       </tbody>
-    </table> : <div className='d-flex justify-content-center py-5'><b>Нет данных</b></div>
+    </table> : <div className='flexbox justify-content--center padding-top--xxl'><b>Нет данных</b></div>
   return content;
 }
 
