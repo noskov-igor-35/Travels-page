@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
+import * as React from 'react';
+import { IPaginationProps, IPaginationState } from '../../../interfaces';
 import GroupButtons from '../GroupButtons'
 
-const DELTA_SHOW_PAGES = 2;
-const ID_FIRST = 'first';
-const ID_LAST = 'last';
+const DELTA_SHOW_PAGES: number = 2;
+const ID_FIRST: string = 'first';
+const ID_LAST: string = 'last';
 
-class Pagination extends Component {
+class Pagination extends React.Component<IPaginationProps, IPaginationState> {
   // Метод клика, отсылает id во внешний обработчик
-  handlePageChange(page) {
+  handlePageChange(page: string) {
     this.props.handleChange(page === ID_FIRST ? 1 : page === ID_LAST ? this.props.maxPage : Number(page));
   }
 
-  constructor(props) {
+  constructor(props: IPaginationProps) {
     super(props);
 
     this.handlePageChange = this.handlePageChange.bind(this);
@@ -22,7 +23,7 @@ class Pagination extends Component {
     };
   }
 
-  static getDerivedStateFromProps(props) {
+  static getDerivedStateFromProps(props: IPaginationProps): IPaginationState {
     // При изменении props обновим крайние значения
     return {
       minPage: props.page - DELTA_SHOW_PAGES > 0 ? props.page - DELTA_SHOW_PAGES : 1,
@@ -30,7 +31,7 @@ class Pagination extends Component {
     }
   }
 
-  render() {
+  render(): JSX.Element {
     const { page } = this.props;
     let pagination;
 
@@ -40,12 +41,12 @@ class Pagination extends Component {
       // Формируем набор, начнем с перехода на первую страницу, потом страницы и в конце переход на последнию страницу
       const items = [{ id: ID_FIRST, title: '<<' }];
       for (let page = this.state.minPage; page <= this.state.maxPage; page++) {
-        items.push({ id: page, title: page });
+        items.push({ id: `${ page }`, title: `${ page }` });
       }
       items.push({ id: ID_LAST, title: '>>'})
 
       // Формируем пагинатор из набора
-      pagination = <GroupButtons selectedKey = { page }
+      pagination = <GroupButtons selectedKey = { `${page}` }
                                  items = { items }
                                  handleChange = { this.handlePageChange }/>
     }

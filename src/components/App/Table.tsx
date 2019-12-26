@@ -1,23 +1,28 @@
-import React from 'react';
-import './Table/Table.less'
+import * as React from 'react';
+import { ITableProps, IListItem } from '../../interfaces';
+import './Table/Table.less';
 
 const DOUBLE_DIGIT = 10;
 
-function Table(props) {
+function Table(props: ITableProps):JSX.Element {
   // Формируем набор данных
-  let items;
+  let items: JSX.Element[];
   if (props.data.length) {
-    items = props.data.map(item => {
+    items = props.data.map((item: IListItem): JSX.Element => {
       // Сформируем даты в нужных форматах
-      const day = item.date.getDate() < DOUBLE_DIGIT ? `0${ item.date.getDate() }` : item.date.getDate();
-      const month = item.date.getMonth() + 1 < DOUBLE_DIGIT
+      const day: string|number = item.date.getDate() < DOUBLE_DIGIT ? `0${ item.date.getDate() }` : item.date.getDate();
+      const month: string|number = item.date.getMonth() + 1 < DOUBLE_DIGIT
         ? `0${ item.date.getMonth() + 1 }`
         : item.date.getMonth() + 1;
-      const hour = item.date.getHours() < DOUBLE_DIGIT ? `0${ item.date.getHours() }` : item.date.getHours();
-      const minutes = item.date.getMinutes() < DOUBLE_DIGIT ? `0${ item.date.getMinutes() }` : item.date.getMinutes();
+      const hour: string|number = item.date.getHours() < DOUBLE_DIGIT 
+        ? `0${ item.date.getHours() }` 
+        : item.date.getHours();
+      const minutes: string|number = item.date.getMinutes() < DOUBLE_DIGIT 
+        ? `0${ item.date.getMinutes() }` 
+        : item.date.getMinutes();
       
       // Переведенм тип на русский язык
-      let type;
+      let type: string;
       switch (item.type) {
         case 'avia':
           type = 'Авиа';
@@ -46,22 +51,22 @@ function Table(props) {
           </div>
         </td>
         <td>
-          <div className='flexbox justify-content--end'>{ `${item.amount.toLocaleString('ru-RU')} руб.` }</div>
+          <div className='flexbox justify-content--end'>{ `${item.amount.toLocaleString('ru-RU')} р.` }</div>
         </td>
       </tr>
     })
   }
 
   // Если есть данные выведем таблицу, иначе заглушку
-  const content = props.data.length ? <table className='Table'>
+  const content: JSX.Element = props.data.length ? <table className='Table'>
       <thead>
         <tr>
-          <th width='auto' scope='col'>
+          <th className='Table__idCol' scope='col'>
             <div className='flexbox'>#</div>
           </th>
-          <th nowrap='true' width='auto' scope='col'>Вид заказа</th>
-          <th width='60%' scope='col'>Дата</th>
-          <th width='auto' scope='col'>
+          <th className='Table__idCol' scope='col'>Вид заказа</th>
+          <th className='Table__dateCol' scope='col'>Дата</th>
+          <th className='Table__idCol' scope='col'>
             <div className='flexbox justify-content--end'>Стоимость</div>
           </th>
         </tr>

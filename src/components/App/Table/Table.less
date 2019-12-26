@@ -1,6 +1,15 @@
-Table {
+.Table {
     width: 100%;
     border-collapse: collapse;
+    &__idCol, &__typeCol, &__priceCol, &__dateCol {
+        white-space: nowrap;
+    }
+    &__idCol, &__typeCol, &__priceCol {
+        width: auto;
+    }
+    &__dateCol {
+        width: 60%;
+    }
 }
 tbody th, tbody td {
     border-top: 1px solid gray;

@@ -1,22 +1,25 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: './src/index.tsx',
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js']
+  },
   output: {
-    path: path.join(__dirname, "/dist"),
-    filename: "index-bundle.js"
+    path: path.join(__dirname, '/dist'),
+    filename: 'bundle.min.js'
   },
   devServer: {
     host: '0.0.0.0',
-    port: 8080
+    port: 3000
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: ["babel-loader"]
+        test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader'
       },
       {
         test: /\.less$/,
@@ -29,14 +32,14 @@ module.exports = {
           },
           {
             loader: 'less-loader',
-          }
+          },
         ],
-      }
+      },
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html"
+      template: './src/index.html'
     })
   ]
-};
+}

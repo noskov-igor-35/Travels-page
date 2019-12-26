@@ -1,51 +1,47 @@
-import React, { Component } from 'react';
+import * as React from 'react';
+import MenuItem from "./Dropdown/MenuItem"
+import { IFilterProps, IFilterItem, IDropdownState } from '../../interfaces';
 import './Dropdown/Dropdown.less'
 
-class Dropdown extends Component {
-  constructor(props) {
+class Dropdown extends React.Component<IFilterProps, IDropdownState> {
+  constructor(props: IFilterProps) {
     super(props);
     this.toggle = this.toggle.bind(this);
-    this.clickItem = this.clickItem.bind(this);
     this.state = {
       dropdownOpen: false
     }
   }
 
   // Метод открытия / скрытия выпадашки
-  toggle() {
-    this.setState((state) => {
-      return {dropdownOpen: !state.dropdownOpen};
+  toggle(): void {
+    this.setState((state: IDropdownState): IDropdownState => {
+      return { dropdownOpen: !state.dropdownOpen };
     });
   }
 
-  // Метод клика, отсылает id во внешний обработчик
-  clickItem(e) {
-    if (e.target.id !== this.props.selectedKey) {
-      this.props.handleChange(e.target.id);
-    }
-  }
-
-  render () {
-    let title;
-    let maxTitle = '';
+  render (): JSX.Element {
+    let title: string;
+    let maxTitle: string= '';
+    
     // Сформируем набор значений
-    const items = this.props.items.map((item) => {
-      const isSelected = item.id === this.props.selectedKey;
+    const items:JSX.Element[] = this.props.items.map((item:IFilterItem):JSX.Element => {
+      const isSelected: boolean = item.id === this.props.selectedKey;
+
       // При встрече выбранного значения проставим заголовок, чтобы дважды не искать
       if (isSelected) {
         title = item.title;
       }
+
       // Запоминаем самое большое значение и складываем его в шапку для фиксации ширины
       if (maxTitle.length < item.title.length) {
         maxTitle = item.title;
       }
 
-      return <div className={ `Dropdown__List-item${ isSelected ? ' Dropdown__List-item_active' : '' } padding--m` }
-                  key = { item.id }
-                  id = { item.id }
-                  onClick = { this.clickItem }>
-                  { item.title }
-              </div>
+      return <MenuItem isSelected={ isSelected } 
+                       key = { item.id }
+                       id = { item.id }
+                       title={ item.title }
+                       handleClick = { this.props.handleChange }/>
     });
     
     return (
