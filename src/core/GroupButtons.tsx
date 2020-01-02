@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Button from './GroupButtons/Button';
-import { IFilterProps, IFilterItem } from '../../interfaces';
+import { IGroupBtnProps, IGroupBtnItem } from '../interfaces/IGroupBtns';
 import './GroupButtons/GroupButtons.less';
 
-function GroupButtons (props: IFilterProps):JSX.Element {
+function GroupButtons (props: IGroupBtnProps):JSX.Element {
   // Сформируем набор кнопок
-  const items: JSX.Element[] = props.items.map((item: IFilterItem): JSX.Element => {
+  const items: JSX.Element[] = props.items.map((item: IGroupBtnItem): JSX.Element => {
     // Выделим желтым выбранный фильтр
     const isSelected: boolean = item.id === props.selectedKey;
     return <Button isSelected={ isSelected } 

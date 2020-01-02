@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { IFilterItem } from '../../../interfaces'
+import { IGroupBtnItem } from '../../interfaces/IGroupBtns';
 
-class Button extends React.Component<IFilterItem> {
+class Button extends React.Component<IGroupBtnItem> {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);

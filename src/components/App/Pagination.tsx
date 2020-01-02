@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { IPaginationProps, IPaginationState } from '../../../interfaces';
-import GroupButtons from '../GroupButtons'
+import { connect } from 'react-redux';
+import { IPaginationProps, IPaginationState } from '../../interfaces/IPagination';
+import GroupButtons from '../../core/GroupButtons'
 
 const DELTA_SHOW_PAGES: number = 2;
 const ID_FIRST: string = 'first';
@@ -9,7 +10,7 @@ const ID_LAST: string = 'last';
 class Pagination extends React.Component<IPaginationProps, IPaginationState> {
   // Метод клика, отсылает id во внешний обработчик
   handlePageChange(page: string) {
-    this.props.handleChange(page === ID_FIRST ? 1 : page === ID_LAST ? this.props.maxPage : Number(page));
+    this.props.onChangePage(page === ID_FIRST ? 1 : page === ID_LAST ? this.props.pagesCount : Number(page));
   }
 
   constructor(props: IPaginationProps) {
@@ -27,7 +28,7 @@ class Pagination extends React.Component<IPaginationProps, IPaginationState> {
     // При изменении props обновим крайние значения
     return {
       minPage: props.page - DELTA_SHOW_PAGES > 0 ? props.page - DELTA_SHOW_PAGES : 1,
-      maxPage: props.page + DELTA_SHOW_PAGES < props.maxPage ? props.page + DELTA_SHOW_PAGES : props.maxPage
+      maxPage: props.page + DELTA_SHOW_PAGES < props.pagesCount ? props.page + DELTA_SHOW_PAGES : props.pagesCount
     }
   }
 
@@ -58,4 +59,14 @@ class Pagination extends React.Component<IPaginationProps, IPaginationState> {
   }
 }
 
-export default Pagination;
+export default connect(
+  state => ({
+    page: state.page,
+    pagesCount: state.pagesCount,
+  }),
+  dispatch => ({
+    onChangePage: (page) => {
+      dispatch({ type: 'CHANGE_PAGE', payload: page });
+    }
+  })
+)(Pagination);

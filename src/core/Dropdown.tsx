@@ -1,10 +1,11 @@
 import * as React from 'react';
-import MenuItem from "./Dropdown/MenuItem"
-import { IFilterProps, IFilterItem, IDropdownState } from '../../interfaces';
+import MenuItem from "./Dropdown/MenuItem";
+import { IGroupBtnProps, IGroupBtnItem } from '../interfaces/IGroupBtns';
+import { IDropdownState } from '../interfaces/IDropdown';
 import './Dropdown/Dropdown.less'
 
-class Dropdown extends React.Component<IFilterProps, IDropdownState> {
-  constructor(props: IFilterProps) {
+class Dropdown extends React.Component<IGroupBtnProps, IDropdownState> {
+  constructor(props: IGroupBtnProps) {
     super(props);
     this.toggle = this.toggle.bind(this);
     this.state = {
@@ -24,7 +25,7 @@ class Dropdown extends React.Component<IFilterProps, IDropdownState> {
     let maxTitle: string= '';
     
     // Сформируем набор значений
-    const items:JSX.Element[] = this.props.items.map((item:IFilterItem):JSX.Element => {
+    const items:JSX.Element[] = this.props.items.map((item:IGroupBtnItem):JSX.Element => {
       const isSelected: boolean = item.id === this.props.selectedKey;
 
       // При встрече выбранного значения проставим заголовок, чтобы дважды не искать
