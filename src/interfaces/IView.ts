@@ -1,10 +1,7 @@
 import { IListItem } from './ITable';
+import { IState }  from './IState'
 
-export interface IViewProps {
-    filter: string,
-    sorting: string,
-    page: number,
-    pagesCount: number,
+export interface IViewProps extends IState{
     onChangePageCount: Function,
 };
 
