@@ -1,0 +1,51 @@
+@import '../../aliases.less';
+
+.cross-prefix_mixin (@props, @value) {
+    -webkit-@{props}: @value;
+    @{props}: @value;
+}
+
+.animate-delay_mixin (@step) {
+    .cross-prefix_mixin(animation-delay, @step * 0.3 + 0.15s);
+}
+
+.Indicator {
+	width: @default-font-size * 3 + @spacing-m * 3;
+    margin:auto;
+    &_item-1, &_item-2, &_item-3 {
+        float:left;
+        height: @default-font-size;
+        margin-left: @spacing-m;
+        width: @default-font-size;
+        .cross-prefix_mixin(animation-name, bounce_circleG);
+        .cross-prefix_mixin(animation-duration, 2.24s);
+        .cross-prefix_mixin(animation-iteration-count, infinite);
+        .cross-prefix_mixin(animation-direction, normal);
+        border-radius:10px;
+    }
+    &_item-1 {
+        .animate-delay_mixin(1);
+    }
+    &_item-2 {
+        .animate-delay_mixin(3);
+    }
+    &_item-3 {
+        .animate-delay_mixin(4);
+    }
+}
+
+@keyframes bounce_circleG {
+	0%{}
+	50%{
+		background-color: @grayColorText;
+	}
+	100%{}
+}
+
+@-webkit-keyframes bounce_circleG {
+	0%{}
+	50%{
+		background-color: @grayColorText;
+	}
+	100%{}
+}

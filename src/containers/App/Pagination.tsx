@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { IPaginationProps, IPaginationState } from '../../interfaces/IPagination';
-import GroupButtons from '../../core/GroupButtons'
+import GroupButtons from '../../components/GroupButtons'
 
 const DELTA_SHOW_PAGES: number = 2;
 const ID_FIRST: string = 'first';

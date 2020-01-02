@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { ISortingProps } from '../../interfaces/ISorting';
-import Dropdown from '../../core/Dropdown';
+import Dropdown from '../../components/Dropdown';
 
 class Sorting extends React.Component<ISortingProps> {
   // Метод клика, отсылает id во внешний обработчик

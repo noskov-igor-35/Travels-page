@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { IFilterProps } from '../../interfaces/IFilter';
-import GroupButtons from '../../core/GroupButtons'
+import GroupButtons from '../../components/GroupButtons'
 
 class Filter extends React.Component<IFilterProps> {
   // Метод клика, отсылает id во внешний обработчик

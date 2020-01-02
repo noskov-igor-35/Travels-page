@@ -2,7 +2,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { IViewProps, IViewState } from '../../interfaces/IView';
 import { IListItem } from '../../interfaces/ITable';
-import Table from '../../core/Table';
+import Table from '../../components/Table';
+import Indicator from '../../components/Indicator';
 import RequestPath from '../../requestPath';
 
 const PAGE_SIZE: number = 10;
@@ -50,22 +51,14 @@ class Sorting extends React.Component<IViewProps, IViewState> {
                 this.props.onChangePageCount(Math.ceil(data.length / PAGE_SIZE));
             }
         });
-        /*function sayHi(filter: string, sorting: string, page: number): void {
-            
-          }
-          
-        setTimeout(sayHi.bind(this, filter, sorting, page), 1000);*/
     }
 
     render(): JSX.Element {
-        let table;
         const {data} = this.state;
-        if (this.state.data) {
-            table = <Table data={ data }/>
-        }
+        const view = data ? <Table data={ data }/> : <Indicator/>
         return (
             <div>
-                { table }
+                { view }
             </div>
         );
     }
