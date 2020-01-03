@@ -77,11 +77,11 @@ class Sorting extends React.Component<IViewProps, IViewState> {
 
 export default connect(
     state => ({
-        ...state
+        ...state,
     }),
     dispatch => ({
         onChangePageCount: (pagesCount) => {
             dispatch({ type: 'CHANGE_COUNT_PAGES', payload: pagesCount });
-        }
+        },
     })
 )(Sorting);

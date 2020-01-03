@@ -35,7 +35,7 @@ function App(): JSX.Element {
                 </div>
             </Provider>
         </div>
-    )
+    );
 };
 
 export default App;
