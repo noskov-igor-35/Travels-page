@@ -1,7 +1,9 @@
 import * as React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { changeFilter } from '../../actions/filters';
 import { IFilterProps } from '../../interfaces/IFilter';
-import GroupButtons from '../../components/GroupButtons'
+import GroupButtons from '../../components/GroupButtons';
 
 class Filter extends React.Component<IFilterProps> {
     // Метод клика, отсылает id во внешний обработчик
@@ -36,8 +38,6 @@ export default connect(
         filter: state.filter,
     }),
     dispatch => ({
-        onChangeFilter: (filter) => {
-            dispatch({ type: 'CHANGE_FILTER', payload: filter, });
-        },
+        onChangeFilter: bindActionCreators(changeFilter, dispatch),
     })
 )(Filter);

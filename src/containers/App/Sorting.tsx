@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { changeSorting } from '../../actions/filters';
 import { ISortingProps } from '../../interfaces/ISorting';
 import Dropdown from '../../components/Dropdown';
 
@@ -33,8 +35,6 @@ export default connect(
         sorting: state.sorting,
     }),
     dispatch => ({
-        onChangeSorting: (sorting) => {
-            dispatch({ type: 'CHANGE_SORTING', payload: sorting, });
-        },
+        onChangeSorting: bindActionCreators(changeSorting, dispatch),
     })
 )(Sorting);

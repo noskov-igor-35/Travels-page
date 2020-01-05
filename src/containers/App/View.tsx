@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { changePagesCount } from '../../actions/filters';
 import { IViewProps, IViewState } from '../../interfaces/IView';
 import { IListItem } from '../../interfaces/ITable';
 import Table from '../../components/Table';
@@ -80,8 +82,6 @@ export default connect(
         ...state,
     }),
     dispatch => ({
-        onChangePageCount: (pagesCount) => {
-            dispatch({ type: 'CHANGE_COUNT_PAGES', payload: pagesCount });
-        },
+        onChangePageCount: bindActionCreators(changePagesCount, dispatch),
     })
 )(Sorting);

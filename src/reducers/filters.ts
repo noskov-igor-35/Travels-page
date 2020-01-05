@@ -8,30 +8,11 @@ const initialState: IState = {
 };;
 
 export default function(state: IState = initialState, action: IAction): IState {
-    if (action.type === 'CHANGE_FILTER') {
+    if (action.type === 'CHANGE_FILTERS') {
         return {
             ...state,
-            filter: `${action.payload}`, 
-            page: 1, 
-            pagesCount: null,
+            ...action.payload,
         };
-    } else if (action.type === 'CHANGE_SORTING') {
-        return {
-            ...state,
-            sorting: `${action.payload}`, 
-            page: 1, 
-            pagesCount: null,
-        };
-    } else if (action.type === 'CHANGE_PAGE') {
-        return {
-            ...state,
-            page: Number(action.payload),
-        };
-    } else if (action.type === 'CHANGE_COUNT_PAGES') {
-        return {
-            ...state,
-            pagesCount: Number(action.payload),
-        }
     }
     return state;
 }

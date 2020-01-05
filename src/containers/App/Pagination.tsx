@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { changePage } from '../../actions/filters';
 import { IPaginationProps, IPaginationState } from '../../interfaces/IPagination';
 import GroupButtons from '../../components/GroupButtons'
 
@@ -67,8 +69,6 @@ export default connect(
         pagesCount: state.pagesCount,
     }),
     dispatch => ({
-        onChangePage: (page) => {
-            dispatch({ type: 'CHANGE_PAGE', payload: page, });
-        },
+        onChangePage: bindActionCreators(changePage, dispatch),
     })
 )(Pagination);
