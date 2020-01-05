@@ -1,4 +1,6 @@
-export function changeFilter(filter) {
+import { IAction } from '../interfaces/IState';
+
+export function changeFilter(filter: string): IAction {
     return {
         type: 'CHANGE_FILTERS',
         payload: {
@@ -9,7 +11,7 @@ export function changeFilter(filter) {
     }
 }
 
-export function changeSorting(sorting) {
+export function changeSorting(sorting: string): IAction {
     return {
         type: 'CHANGE_FILTERS',
         payload: {
@@ -20,7 +22,7 @@ export function changeSorting(sorting) {
     }
 }
 
-export function changePage(page) {
+export function changePage(page: number): IAction {
     return {
         type: 'CHANGE_FILTERS',
         payload: {
@@ -29,7 +31,7 @@ export function changePage(page) {
     }
 }
 
-export function changePagesCount(pagesCount) {
+export function changePagesCount(pagesCount: number): IAction {
     return {
         type: 'CHANGE_FILTERS',
         payload: {

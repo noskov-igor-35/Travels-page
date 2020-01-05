@@ -1,4 +1,4 @@
-import { IState, IAction } from '../interfaces/IState'
+import { IState, IAction } from '../interfaces/IState';
 
 const initialState: IState = {
     filter: 'all',
