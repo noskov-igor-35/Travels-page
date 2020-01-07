@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ITableProps, IListItem } from '../interfaces/ITable';
+import { ITableProps, IListItem } from '../interfaces/components/ITable';
 import './Table/Table.less';
 
 const DOUBLE_DIGIT = 10;

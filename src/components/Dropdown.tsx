@@ -1,7 +1,7 @@
 import * as React from 'react';
 import MenuItem from "./Dropdown/MenuItem";
-import { IGroupBtnProps, IGroupBtnItem } from '../interfaces/IGroupBtns';
-import { IDropdownState } from '../interfaces/IDropdown';
+import { IGroupBtnProps, IGroupBtnItem } from '../interfaces/components/IGroupBtns';
+import { IDropdownState } from '../interfaces/components/IDropdown';
 import './Dropdown/Dropdown.less'
 
 class Dropdown extends React.Component<IGroupBtnProps, IDropdownState> {

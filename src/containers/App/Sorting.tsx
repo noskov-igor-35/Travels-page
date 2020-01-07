@@ -2,7 +2,7 @@ import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { changeSorting } from '../../actions/filters';
-import { ISortingProps } from '../../interfaces/ISorting';
+import { ISortingProps } from '../../interfaces/containers/ISorting';
 import Dropdown from '../../components/Dropdown';
 
 class Sorting extends React.Component<ISortingProps> {
@@ -32,7 +32,7 @@ class Sorting extends React.Component<ISortingProps> {
 
 export default connect(
     state => ({
-        sorting: state.sorting,
+        sorting: state.filters.sorting,
     }),
     dispatch => ({
         onChangeSorting: bindActionCreators(changeSorting, dispatch),

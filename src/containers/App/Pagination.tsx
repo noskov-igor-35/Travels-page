@@ -2,7 +2,7 @@ import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { changePage } from '../../actions/filters';
-import { IPaginationProps, IPaginationState } from '../../interfaces/IPagination';
+import { IPaginationProps, IPaginationState } from '../../interfaces/containers/IPagination';
 import GroupButtons from '../../components/GroupButtons'
 
 const DELTA_SHOW_PAGES: number = 2;
@@ -65,8 +65,8 @@ class Pagination extends React.Component<IPaginationProps, IPaginationState> {
 
 export default connect(
     state => ({
-        page: state.page,
-        pagesCount: state.pagesCount,
+        page: state.filters.page,
+        pagesCount: state.data.pagesCount,
     }),
     dispatch => ({
         onChangePage: bindActionCreators(changePage, dispatch),

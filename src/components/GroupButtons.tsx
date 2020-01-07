@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from './GroupButtons/Button';
-import { IGroupBtnProps, IGroupBtnItem } from '../interfaces/IGroupBtns';
+import { IGroupBtnProps, IGroupBtnItem } from '../interfaces/components/IGroupBtns';
 import './GroupButtons/GroupButtons.less';
 
 function GroupButtons (props: IGroupBtnProps):JSX.Element {

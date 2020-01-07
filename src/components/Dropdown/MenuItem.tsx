@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IGroupBtnItem } from '../../interfaces/IGroupBtns';
+import { IGroupBtnItem } from '../../interfaces/components/IGroupBtns';
 
 class MenuItem extends React.Component<IGroupBtnItem> {
     constructor(props) {

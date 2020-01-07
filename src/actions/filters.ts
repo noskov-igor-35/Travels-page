@@ -1,41 +1,30 @@
-import { IAction } from '../interfaces/IState';
+import { IFilterAction } from '../interfaces/reducers/IFilterState';
 
-export function changeFilter(filter: string): IAction {
+export function changeFilter(filter: string): IFilterAction {
     return {
         type: 'CHANGE_FILTERS',
         payload: {
             filter,
             page: 1,
-            pagesCount: null
-        }
-    }
+        },
+    };
 }
 
-export function changeSorting(sorting: string): IAction {
+export function changeSorting(sorting: string): IFilterAction {
     return {
         type: 'CHANGE_FILTERS',
         payload: {
             sorting,
             page: 1,
-            pagesCount: null
         }
-    }
+    };
 }
 
-export function changePage(page: number): IAction {
+export function changePage(page: number): IFilterAction {
     return {
         type: 'CHANGE_FILTERS',
         payload: {
             page,
         }
-    }
-}
-
-export function changePagesCount(pagesCount: number): IAction {
-    return {
-        type: 'CHANGE_FILTERS',
-        payload: {
-            pagesCount,
-        }
-    }
+    };
 }

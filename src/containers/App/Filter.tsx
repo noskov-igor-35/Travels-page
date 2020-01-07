@@ -2,7 +2,7 @@ import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { changeFilter } from '../../actions/filters';
-import { IFilterProps } from '../../interfaces/IFilter';
+import { IFilterProps } from '../../interfaces/containers/IFilter';
 import GroupButtons from '../../components/GroupButtons';
 
 class Filter extends React.Component<IFilterProps> {
@@ -35,7 +35,7 @@ class Filter extends React.Component<IFilterProps> {
 
 export default connect(
     state => ({
-        filter: state.filter,
+        filter: state.filters.filter,
     }),
     dispatch => ({
         onChangeFilter: bindActionCreators(changeFilter, dispatch),

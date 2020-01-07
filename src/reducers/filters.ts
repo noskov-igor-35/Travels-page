@@ -1,13 +1,12 @@
-import { IState, IAction } from '../interfaces/IState';
+import { IFilterState, IFilterAction } from '../interfaces/reducers/IFilterState';
 
-const initialState: IState = {
+const initialState: IFilterState = {
     filter: 'all',
     sorting: 'date',
     page: 1,
-    pagesCount: null
 };;
 
-export default function(state: IState = initialState, action: IAction): IState {
+export default function(state: IFilterState = initialState, action: IFilterAction): IFilterState {
     if (action.type === 'CHANGE_FILTERS') {
         return {
             ...state,

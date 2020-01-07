@@ -1,8 +1,11 @@
 import * as React from 'react';
 
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import reducers from '../reducers/filters';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import trunk from 'redux-thunk';
+
+import reducers from '../reducers/reducers';
 
 import Filter from './App/Filter';
 import Sorting from './App/Sorting';
@@ -11,7 +14,7 @@ import Pagination from './App/Pagination';
 
 import './App/App.less';
 
-const store = createStore(reducers);
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(trunk)));
 
 function App(): JSX.Element {
     return (

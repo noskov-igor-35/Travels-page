@@ -1,16 +1,12 @@
 import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { changePagesCount } from '../../actions/filters';
-import { IViewProps, IViewState } from '../../interfaces/IView';
-import { IListItem } from '../../interfaces/ITable';
+import { updateFulters, changeData } from '../../actions/data';
+import { IViewProps } from '../../interfaces/containers/IView';
 import Table from '../../components/Table';
 import Indicator from '../../components/Indicator';
-import RequestPath from '../../requestPath';
 
-const PAGE_SIZE: number = 10;
-
-class Sorting extends React.Component<IViewProps, IViewState> {
+class View extends React.Component<IViewProps> {
     constructor(props: IViewProps) {
         super(props);
         this.state = {
@@ -20,43 +16,23 @@ class Sorting extends React.Component<IViewProps, IViewState> {
 
     // Метод загрщуки данных, предпологаем что они могут меняться
     getData(filter: string, sorting: string, page: number): void {
-        //Сбросим данные
-        this.setState({
-            data: null,
-        });
+        // Сбросим данные и запомним актуальные фильтры
+        this.props.updateDate({
+            filter,
+            sorting,
+            page
+        })
 
-        fetch(RequestPath)
-        .then((res: Response) => res.json())
-        .then((res: IListItem[]) => {
-            // Приводим к удобному формату
-            let data: IListItem[] = res.map((item: IListItem) => {
-                item.date = new Date(item.date);
-                return item;
-            });
-
-            // Фильтруем данные
-            if (filter !== 'all') {
-                data = data.filter(item => item.type === filter);
-            }
-
-            // Сортируем
-            data.sort((prev, curr) => curr[sorting] - prev[sorting]);
-
-            // Если состояние ещё акутально, сохранияем данные и обновим кол-во страниц
-            if (filter === this.props.filter && sorting === this.props.sorting && page === this.props.page) {
-                // Запоминаем состояние
-                this.setState({
-                    data: data.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),
-                });
-    
-                // Получем количество страниц
-                this.props.onChangePageCount(Math.ceil(data.length / PAGE_SIZE));
-            }
+        // Запросим новые данные
+        this.props.changeData({
+            filter,
+            sorting,
+            page
         });
     }
 
     render(): JSX.Element {
-        const {data} = this.state;
+        const { data } = this.props;
         const view = data ? <Table data={ data }/> : <Indicator/>
         return (
             <div>
@@ -79,9 +55,11 @@ class Sorting extends React.Component<IViewProps, IViewState> {
 
 export default connect(
     state => ({
-        ...state,
+        ...state.filters,
+        ...state.data,
     }),
     dispatch => ({
-        onChangePageCount: bindActionCreators(changePagesCount, dispatch),
+        updateDate: bindActionCreators(updateFulters, dispatch),
+        changeData: bindActionCreators(changeData, dispatch),
     })
-)(Sorting);
+)(View);
